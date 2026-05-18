@@ -4,13 +4,122 @@ import React, { useState } from 'react';
 
 interface Skill {
   name: string;
-  shortName: string;
 }
 
 interface SkillCategory {
   title: string;
   id: string;
   skills: Skill[];
+}
+
+function getSkillIcon(name: string) {
+  switch (name) {
+    case 'PHP':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-3.5 13.5H7.3v-2.1h1.2c.8 0 1.2-.4 1.2-1s-.4-1-1.2-1H7.3v6.2H6V7.5h2.5c1.5 0 2.5.8 2.5 2.2 0 1-.5 1.7-1.3 2 .9.3 1.3 1.1 1.3 2.1 0 1.4-1.1 2.2-2.5 2.2zm7.1 0h-1.2v-2.1h1.2c.8 0 1.2-.4 1.2-1s-.4-1-1.2-1h-1.2v6.2h-1.3V7.5h2.5c1.5 0 2.5.8 2.5 2.2 0 1-.5 1.7-1.3 2 .9.3 1.3 1.1 1.3 2.1 0 1.4-1.1 2.2-2.5 2.2z" />
+        </svg>
+      );
+    case 'JavaScript':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 3v18h18V3H3zm11.5 13.5c0 .8-.7 1.5-1.5 1.5H10v-1.5h3v-1.5H9.5V11h5v1.5H11v1.5h3.5v2.5zm4.5 1.5h-1.5v-1.5h1.5v1.5zm0-3h-1.5V11H19v4.5z"/>
+        </svg>
+      );
+    case 'TypeScript':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 3v18h18V3H3zm8.5 13.5H9v-4.5H7.5V11h4v1.5h-1.5v4zm5.5 0c0 .8-.7 1.5-1.5 1.5H13v-1.5h3.5v-1.5H13V11h4.5v1.5H14.5v1.5h2v2.5z"/>
+        </svg>
+      );
+    case 'HTML5':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 2l1.6 17.8L12 22l7.4-2.2L21 2H3zm13.7 6H9.3l.2 2h6.8l-.6 6L12 17.1l-3.7-1.1-.2-2.5h2l.1 1.2 1.8.5 1.8-.5.2-2.2H8.7l-.4-4.5h8.8l-.4 3.5z"/>
+        </svg>
+      );
+    case 'CSS3 & Sass':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 2l1.6 17.8L12 22l7.4-2.2L21 2H3zm13.5 5.5l-.2 2.2H9.5l.2 2.2h5.6l-.6 6L12 18.9l-2.7-.9-.2-1.8h2l.1.9 1 .3.9-.3.1-1.3H8.9l-.4-4.5h8.4l-.4 4.1z" />
+        </svg>
+      );
+    case 'React':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
+          <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+        </svg>
+      );
+    case 'Next.js':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M8 16V8l8 8V8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'Laravel':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M4 4h8v8H4V4zm8 8h8v8h-8v-8zM8 8h8v8H8V8z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'Tailwind CSS':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.335 6.182 14.974 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19 12.001 19c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.335 13.382 8.974 12 6.001 12z"/>
+        </svg>
+      );
+    case 'Node.js':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <polygon points="12 2 22 8 22 16 12 22 2 16 2 8" />
+          <polyline points="12 2 12 22" />
+          <polyline points="2 8 12 13.5 22 8" />
+        </svg>
+      );
+    case 'PostgreSQL':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M12 2a10 10 0 0 1 10 10c0 4-3 7-7 8a4 4 0 0 1-6 0c-4-1-7-4-7-8A10 10 0 0 1 12 2z" />
+          <path d="M12 6c-2 0-4 1.5-4 4 0 3 3 5 4 5s4-2 4-5c0-2.5-2-4-4-4z" />
+        </svg>
+      );
+    case 'MongoDB':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M12 2c0 0-5 5-5 10c0 3 2 6 5 10c3-4 5-7 5-10c0-5-5-10-5-10z" />
+          <path d="M12 2v20" />
+        </svg>
+      );
+    case 'Git & GitHub':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <circle cx="18" cy="18" r="3" />
+          <circle cx="6" cy="6" r="3" />
+          <circle cx="6" cy="18" r="3" />
+          <path d="M6 9v6" />
+          <path d="M9 15c2 0 4-1 6-4" />
+        </svg>
+      );
+    case 'Figma / Creative':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 12a3 3 0 1 0 3-3H12v3zm-3-3a3 3 0 1 0 0-6h3v6H9zm0 6a3 3 0 1 0 0-6h3v6H9zm0 6a3 3 0 1 0 0-6v6H9zm6-9a3 3 0 1 0-3-3v3h3z" />
+        </svg>
+      );
+    case 'Photoshop & Illustrator':
+      return (
+        <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <path d="M7 9h4c1 0 2 .5 2 1.5s-1 1.5-2 1.5H7m5 0c1 0 2 .5 2 1.5s-1 1.5-2 1.5h-5" />
+        </svg>
+      );
+    default:
+      return null;
+  }
 }
 
 export default function SkillsSection() {
@@ -21,33 +130,33 @@ export default function SkillsSection() {
       title: 'Languages & Core',
       id: '01 //',
       skills: [
-        { name: 'PHP', shortName: 'PHP' },
-        { name: 'JavaScript', shortName: 'JS' },
-        { name: 'TypeScript', shortName: 'TS' },
-        { name: 'HTML5', shortName: 'H5' },
-        { name: 'CSS3 & Sass', shortName: 'C3' }
+        { name: 'PHP' },
+        { name: 'JavaScript' },
+        { name: 'TypeScript' },
+        { name: 'HTML5' },
+        { name: 'CSS3 & Sass' }
       ]
     },
     {
       title: 'Frameworks & Libs',
       id: '02 //',
       skills: [
-        { name: 'React', shortName: 'RE' },
-        { name: 'Next.js', shortName: 'NX' },
-        { name: 'Laravel', shortName: 'LV' },
-        { name: 'Tailwind CSS', shortName: 'TW' },
-        { name: 'Node.js', shortName: 'NO' }
+        { name: 'React' },
+        { name: 'Next.js' },
+        { name: 'Laravel' },
+        { name: 'Tailwind CSS' },
+        { name: 'Node.js' }
       ]
     },
     {
       title: 'Databases & Tools',
       id: '03 //',
       skills: [
-        { name: 'PostgreSQL', shortName: 'PG' },
-        { name: 'MongoDB', shortName: 'MG' },
-        { name: 'Git & GitHub', shortName: 'GT' },
-        { name: 'Figma / Creative', shortName: 'FG' },
-        { name: 'Photoshop & Illustrator', shortName: 'AD' }
+        { name: 'PostgreSQL' },
+        { name: 'MongoDB' },
+        { name: 'Git & GitHub' },
+        { name: 'Figma / Creative' },
+        { name: 'Photoshop & Illustrator' }
       ]
     }
   ];
@@ -123,7 +232,7 @@ export default function SkillsSection() {
                     >
                       {/* Logo Badge inside Pill */}
                       <div 
-                        className={`w-6 h-6 flex items-center justify-center border rounded-[4px] text-[8px] font-black shrink-0 transition-colors duration-300 ${
+                        className={`w-6 h-6 flex items-center justify-center border rounded-[4px] shrink-0 transition-colors duration-300 ${
                           isBlackCard
                             ? isHovered
                               ? 'bg-black text-white border-black'
@@ -133,7 +242,7 @@ export default function SkillsSection() {
                               : 'bg-[#F5F5F5] border-[#E0E0E0] text-[#111111]'
                         }`}
                       >
-                        {skill.shortName}
+                        {getSkillIcon(skill.name)}
                       </div>
                       <span className="text-[14px] font-bold tracking-tight">
                         {skill.name}
