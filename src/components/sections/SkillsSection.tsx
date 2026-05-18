@@ -198,7 +198,7 @@ export default function SkillsSection() {
       {/* Skills Grid - Fully responsive grid columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full z-10 relative">
         {categories.map((category, catIndex) => {
-          const isBlackCard = catIndex === 0; // First card is black, matching Services Section rhythm
+          const isBlackCard = true; // All cards are premium black
 
           return (
             <div 
