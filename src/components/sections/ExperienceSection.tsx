@@ -1,8 +1,57 @@
 import React from 'react';
+import { Briefcase, GraduationCap } from 'lucide-react';
+
+const experiences = [
+  {
+    title: "Website/Mobile Apps Developer",
+    company: "PT Lab Welcom Play",
+    duration: "Mar 2025 - Present",
+    desc: "Designing, building, and maintaining responsive websites and mobile applications."
+  },
+  {
+    title: "Freelance Website/Mobile Apps Developer",
+    company: "Aigorhythm Malaysia",
+    duration: "Dec 2024 - Present",
+    desc: "Developing customized web and mobile solutions tailored to client specifications."
+  },
+  {
+    title: "University Intern",
+    company: "PT Citra Powerindo Sakti",
+    duration: "2023",
+    desc: "Assisted in engineering projects, programming tasks, and system analysis."
+  },
+  {
+    title: "Vocational High School Intern",
+    company: "PT Indonusa Telemedia (Wardiere Inc.)",
+    duration: "2017",
+    desc: "Supported network maintenance, IT troubleshooting, and technical documentation."
+  }
+];
+
+const educations = [
+  {
+    title: "Informatics Engineering",
+    institution: "Universitas Esa Unggul",
+    duration: "2018 - 2024",
+    desc: "Acquired deep knowledge of software engineering, web development, and algorithms."
+  },
+  {
+    title: "SMK Telkom Jakarta",
+    institution: "Computer & Network Engineering",
+    duration: "2014 - 2017",
+    desc: "Focused on networking, computer systems, and server management."
+  },
+  {
+    title: "Elementary & Junior High School",
+    institution: "SD-SMP Seraphine Bakti Utama",
+    duration: "2005 - 2014",
+    desc: "Built a solid academic foundation and basic communication skills."
+  }
+];
 
 export default function ExperienceSection() {
   return (
-    <div className="flex overflow-hidden w-full flex-col py-16 px-20 bg-white antialiased text-xs max-w-7xl mx-auto relative">
+    <div id="about" className="flex overflow-hidden w-full flex-col py-16 px-[108px] bg-white antialiased text-xs max-w-8xl mx-auto relative">
       {/* Header */}
       <div className="w-full flex flex-col items-center mb-16 pt-6 relative">
         <div 
@@ -17,10 +66,10 @@ export default function ExperienceSection() {
           </svg>
         </div>
         <h2 className="text-[56px] leading-[1.1] mt-0 mb-4 uppercase tracking-[0.02em] text-center font-black text-black">
-          EXPERIENCE
+          RESUME
         </h2>
         <p className="text-sm leading-[1.6] max-w-[480px] text-center text-[#555555] m-0">
-          There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+          A summary of my professional work experience and educational background.
         </p>
 
         {/* Decorative Grid Circles / Stripes on Right */}
@@ -38,106 +87,84 @@ export default function ExperienceSection() {
         </svg>
       </div>
 
-      {/* Experience List */}
-      <div className="flex flex-col w-full gap-4 relative z-10">
+      {/* Main Content: Two Columns */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full relative z-10">
         
-        {/* Item 1 - Active/Black background */}
-        <div className="flex justify-between items-center w-full py-6 px-10 bg-[#1A1A1A] hover:translate-x-1 transition-transform duration-300">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center justify-center shrink-0 bg-[#333333] w-12 h-12">
-              <span className="font-extrabold text-white text-base">
-                1
-              </span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="font-extrabold text-white text-xl m-0">
-                Micro-interactions Awwwards Team
-              </h3>
-              <span className="opacity-80 tracking-[-0.01em] text-white text-sm">
-                Focus Lab Agency - United States
-              </span>
-            </div>
+        {/* Education Column */}
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center gap-3 pb-2 border-b-2 border-[#111111] w-fit">
+            <GraduationCap className="w-6 h-6 text-black" strokeWidth={2.5} />
+            <h3 className="text-2xl font-black text-black uppercase tracking-tight m-0">
+              Education
+            </h3>
           </div>
-          <div className="flex items-center gap-6">
-            <div className="w-px h-8 opacity-20 shrink-0 bg-white" />
-            <span className="tracking-[0.05em] uppercase font-bold text-white text-xs">
-              JOB DURATION - 2 YEARS
-            </span>
+
+          <div className="flex flex-col gap-6">
+            {educations.map((edu, idx) => (
+              <div 
+                key={idx} 
+                className="flex gap-5 p-6 bg-white border border-[#EBEBEB] hover:border-[#111111] hover:-translate-y-0.5 transition-all duration-300 rounded-xl group relative"
+              >
+                {/* Visual accent left line */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-[#111111] transition-colors rounded-l-xl" />
+
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="flex justify-between items-start gap-4">
+                    <h4 className="font-extrabold text-black text-lg m-0 leading-tight">
+                      {edu.title}
+                    </h4>
+                    <span className="shrink-0 text-xs font-bold text-[#666666] bg-[#F5F5F5] py-1 px-3 rounded-full border border-[#EAEAEA]">
+                      {edu.duration}
+                    </span>
+                  </div>
+                  <span className="font-bold text-[#555555] text-sm">
+                    {edu.institution}
+                  </span>
+                  <p className="text-xs leading-[1.6] text-[#777777] m-0">
+                    {edu.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Item 2 - White border background */}
-        <div className="flex justify-between items-center w-full py-6 px-10 bg-white border border-[#CCCCCC] hover:translate-x-1 transition-transform duration-300">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center justify-center shrink-0 bg-[#111111] w-12 h-12">
-              <span className="font-extrabold text-white text-base">
-                2
-              </span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="font-extrabold text-[#111111] text-xl m-0">
-                Senior UI Designer
-              </h3>
-              <span className="tracking-[-0.01em] text-[#555555] text-sm">
-                User-Hub - Bangladesh
-              </span>
-            </div>
+        {/* Experience Column */}
+        <div className="flex flex-col gap-8">
+          <div className="flex items-center gap-3 pb-2 border-b-2 border-[#111111] w-fit">
+            <Briefcase className="w-6 h-6 text-black" strokeWidth={2.5} />
+            <h3 className="text-2xl font-black text-black uppercase tracking-tight m-0">
+              Work Experience
+            </h3>
           </div>
-          <div className="flex items-center gap-6">
-            <div className="w-px h-8 opacity-20 shrink-0 bg-[#111111]" />
-            <span className="tracking-[0.05em] uppercase font-bold text-[#111111] text-xs">
-              JOB DURATION - 1 YEAR
-            </span>
-          </div>
-        </div>
 
-        {/* Item 3 - White border background */}
-        <div className="flex justify-between items-center w-full py-6 px-10 bg-white border border-[#CCCCCC] hover:translate-x-1 transition-transform duration-300">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center justify-center shrink-0 bg-[#111111] w-12 h-12">
-              <span className="font-extrabold text-white text-base">
-                3
-              </span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="font-extrabold text-[#111111] text-xl m-0">
-                Product Design
-              </h3>
-              <span className="tracking-[-0.01em] text-[#555555] text-sm">
-                Zomato Digital Agency - India
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center gap-6">
-            <div className="w-px h-8 opacity-20 shrink-0 bg-[#111111]" />
-            <span className="tracking-[0.05em] uppercase font-bold text-[#111111] text-xs">
-              JOB DURATION - 2 YEARS
-            </span>
-          </div>
-        </div>
+          <div className="flex flex-col gap-6">
+            {experiences.map((exp, idx) => (
+              <div 
+                key={idx} 
+                className="flex gap-5 p-6 bg-white border border-[#EBEBEB] hover:border-[#111111] hover:-translate-y-0.5 transition-all duration-300 rounded-xl group relative"
+              >
+                {/* Visual accent left line */}
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-[#111111] transition-colors rounded-l-xl" />
 
-        {/* Item 4 - White border background */}
-        <div className="flex justify-between items-center w-full py-6 px-10 bg-white border border-[#CCCCCC] hover:translate-x-1 transition-transform duration-300">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center justify-center shrink-0 bg-[#111111] w-12 h-12">
-              <span className="font-extrabold text-white text-base">
-                4
-              </span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="font-extrabold text-[#111111] text-xl m-0">
-                Webflow Team Manager
-              </h3>
-              <span className="tracking-[-0.01em] text-[#555555] text-sm">
-                Google Team - UK
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center gap-6">
-            <div className="w-px h-8 opacity-20 shrink-0 bg-[#111111]" />
-            <span className="tracking-[0.05em] uppercase font-bold text-[#111111] text-xs">
-              JOB DURATION - 2 YEARS
-            </span>
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="flex justify-between items-start gap-4">
+                    <h4 className="font-extrabold text-black text-lg m-0 leading-tight">
+                      {exp.title}
+                    </h4>
+                    <span className="shrink-0 text-xs font-bold text-[#666666] bg-[#F5F5F5] py-1 px-3 rounded-full border border-[#EAEAEA]">
+                      {exp.duration}
+                    </span>
+                  </div>
+                  <span className="font-bold text-[#555555] text-sm">
+                    {exp.company}
+                  </span>
+                  <p className="text-xs leading-[1.6] text-[#777777] m-0">
+                    {exp.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
