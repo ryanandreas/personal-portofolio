@@ -178,23 +178,17 @@ export default function HeroSection() {
           <span className="text-[#999999] text-xl">✧</span>
           <span className="tracking-[0.05em] font-bold text-white text-lg">UI/UX DESIGN</span>
           <span className="text-[#999999] text-xl">✧</span>
-          <span className="tracking-[0.05em] font-bold text-white text-lg">NEXT.JS</span>
-          <span className="text-[#999999] text-xl">✧</span>
-          <span className="tracking-[0.05em] font-bold text-white text-lg">FLUTTER</span>
-          <span className="text-[#999999] text-xl">✧</span>
-          <span className="tracking-[0.05em] font-bold text-white text-lg">LARAVEL</span>
-          <span className="text-[#999999] text-xl">✧</span>
           <span className="tracking-[0.05em] font-bold text-white text-lg">WEB DEVELOPMENT</span>
           <span className="text-[#999999] text-xl">✧</span>
           <span className="tracking-[0.05em] font-bold text-white text-lg">MOBILE DEVELOPMENT</span>
           <span className="text-[#999999] text-xl">✧</span>
           <span className="tracking-[0.05em] font-bold text-white text-lg">UI/UX DESIGN</span>
           <span className="text-[#999999] text-xl">✧</span>
-          <span className="tracking-[0.05em] font-bold text-white text-lg">NEXT.JS</span>
+          <span className="tracking-[0.05em] font-bold text-white text-lg">WEB DEVELOPMENT</span>
           <span className="text-[#999999] text-xl">✧</span>
-          <span className="tracking-[0.05em] font-bold text-white text-lg">FLUTTER</span>
+          <span className="tracking-[0.05em] font-bold text-white text-lg">MOBILE DEVELOPMENT</span>
           <span className="text-[#999999] text-xl">✧</span>
-          <span className="tracking-[0.05em] font-bold text-white text-lg">LARAVEL</span>
+          <span className="tracking-[0.05em] font-bold text-white text-lg">UI/UX DESIGN</span>
         </div>
       </div>
     </div>
