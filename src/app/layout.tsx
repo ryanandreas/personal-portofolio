@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ryan Andreas - Product Designer",
-  description: "Portfolio of Ryan Andreas, Product Designer.",
+  title: "Ryan Andreas - Web & Mobile Developer",
+  description: "Portfolio of Ryan Andreas, Web & Mobile Developer.",
 };
 
 export default function RootLayout({
