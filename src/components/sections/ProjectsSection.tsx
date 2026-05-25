@@ -75,10 +75,10 @@ export default function ProjectsSection() {
   };
 
   return (
-    <div id="projects" className="flex overflow-hidden w-full flex-col py-16 px-[108px] bg-white antialiased text-xs max-w-8xl mx-auto relative">
+    <div id="projects" className="flex overflow-hidden w-full flex-col py-12 md:py-16 px-6 md:px-[108px] bg-white antialiased text-xs max-w-8xl mx-auto relative">
       
       {/* Header */}
-      <div className="w-full flex flex-col items-center mb-24 pt-6 relative">
+      <div className="w-full flex flex-col items-center mb-12 md:mb-24 pt-6 relative">
         <div 
           className="flex items-center justify-center mb-4 rounded-full shrink-0 w-8 h-8"
           style={{ 
@@ -90,7 +90,7 @@ export default function ProjectsSection() {
             <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" />
           </svg>
         </div>
-        <h2 className="text-[56px] leading-[1.1] mt-0 mb-4 uppercase tracking-[0.02em] text-center font-black text-black">
+        <h2 className="text-4xl sm:text-5xl md:text-[56px] leading-[1.1] mt-0 mb-4 uppercase tracking-[0.02em] text-center font-black text-black">
           MY PROJECTS
         </h2>
         <p className="text-sm leading-[1.6] max-w-[480px] text-center text-[#555555] m-0">
@@ -98,7 +98,7 @@ export default function ProjectsSection() {
         </p>
 
         {/* Dot pattern */}
-        <svg width="40" height="80" viewBox="0 0 40 80" fill="none" className="absolute left-[100px] top-0 opacity-40">
+        <svg width="40" height="80" viewBox="0 0 40 80" fill="none" className="absolute left-4 md:left-[100px] top-0 opacity-20 md:opacity-40">
           <pattern id="dotPattern" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
             <circle fill="#111" cx="2" cy="2" r="2"/>
           </pattern>
@@ -107,17 +107,17 @@ export default function ProjectsSection() {
       </div>
 
       {/* Projects list with alternating layout */}
-      <div className="flex flex-col w-full px-10 gap-20">
+      <div className="flex flex-col w-full px-0 sm:px-4 md:px-10 gap-16 md:gap-24">
         {projectsData.map((project, idx) => {
           const isAlternate = idx % 2 === 1;
 
           return (
-            <div key={project.id} className="flex flex-col md:flex-row items-center w-full gap-20">
+            <div key={project.id} className="flex flex-col md:flex-row items-center w-full gap-8 md:gap-20">
               
               {/* Card (Displayed first on desktop if not alternate, or second if alternate) */}
               <div 
                 onClick={() => openModal(project)}
-                className={`grow shrink basis-0 h-[400px] flex flex-col items-center justify-center rounded-xl overflow-hidden bg-[#F8F8F8] border border-[#EBEBEB] shadow-sm relative group cursor-pointer ${
+                className={`grow shrink basis-0 w-full h-[240px] sm:h-[320px] md:h-[400px] flex flex-col items-center justify-center rounded-xl overflow-hidden bg-[#F8F8F8] border border-[#EBEBEB] shadow-sm relative group cursor-pointer ${
                   isAlternate ? 'order-1 md:order-2' : 'order-1'
                 }`}
               >
@@ -131,25 +131,25 @@ export default function ProjectsSection() {
               </div>
 
               {/* Content Column */}
-              <div className={`grow shrink basis-0 flex flex-col items-start p-5 ${
+              <div className={`grow shrink basis-0 w-full flex flex-col items-start p-2 sm:p-5 ${
                 isAlternate ? 'order-2 md:order-1' : 'order-2'
               }`}>
-                <div className="mb-6 rounded-full py-3 px-6 bg-[#111111]">
-                  <span className="tracking-[0.05em] uppercase font-extrabold text-white text-xs">
+                <div className="mb-4 md:mb-6 rounded-full py-2 px-4 md:py-3 md:px-6 bg-[#111111]">
+                  <span className="tracking-[0.05em] uppercase font-extrabold text-white text-[10px] md:text-xs">
                     {project.category}
                   </span>
                 </div>
-                <h3 className="text-[36px] leading-[1.2] mt-0 mb-4 font-extrabold text-[#111111]">
+                <h3 className="text-2xl sm:text-[36px] leading-[1.2] mt-0 mb-4 font-extrabold text-[#111111]">
                   {project.title}
                 </h3>
-                <p className="text-sm leading-[1.6] text-[#555555] mb-8 max-w-[480px]">
+                <p className="text-sm leading-[1.6] text-[#555555] mb-6 md:mb-8 max-w-[480px]">
                   {project.description}
                 </p>
                 <div 
                   onClick={() => openModal(project)}
                   className="flex items-center pb-2 gap-3 border-b-2 border-[#111111] cursor-pointer group w-fit"
                 >
-                  <span className="font-extrabold text-black text-lg">
+                  <span className="font-extrabold text-black text-base sm:text-lg">
                     See Details
                   </span>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
@@ -172,7 +172,7 @@ export default function ProjectsSection() {
         >
           {/* Modal Container */}
           <div 
-            className="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative animate-scaleUp max-h-[90vh] md:max-h-[85vh]"
+            className="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative animate-scaleUp max-h-[92vh] md:max-h-[85vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -187,7 +187,7 @@ export default function ProjectsSection() {
             </button>
 
             {/* Left Column: Carousel */}
-            <div className="w-full md:w-3/5 bg-[#F5F5F5] flex items-center justify-center relative select-none h-[280px] sm:h-[350px] md:h-auto min-h-[300px]">
+            <div className="w-full md:w-3/5 bg-[#F5F5F5] flex items-center justify-center relative select-none h-[200px] sm:h-[300px] md:h-auto min-h-[220px] sm:min-h-[300px] shrink-0">
               {/* Image */}
               <div className="w-full h-full relative">
                 <Image
@@ -203,9 +203,9 @@ export default function ProjectsSection() {
               {selectedProject.images.length > 1 && (
                 <button 
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-black border border-[#EBEBEB] hover:border-black flex items-center justify-center cursor-pointer transition-colors shadow-sm"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/80 hover:bg-white text-black border border-[#EBEBEB] hover:border-black flex items-center justify-center cursor-pointer transition-colors shadow-sm"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="15 18 9 12 15 6" />
                   </svg>
                 </button>
@@ -215,9 +215,9 @@ export default function ProjectsSection() {
               {selectedProject.images.length > 1 && (
                 <button 
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-black border border-[#EBEBEB] hover:border-black flex items-center justify-center cursor-pointer transition-colors shadow-sm"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/80 hover:bg-white text-black border border-[#EBEBEB] hover:border-black flex items-center justify-center cursor-pointer transition-colors shadow-sm"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="9 18 15 12 9 6" />
                   </svg>
                 </button>
@@ -230,7 +230,7 @@ export default function ProjectsSection() {
                     <button 
                       key={idx}
                       onClick={(e) => { e.stopPropagation(); setCurrentSlide(idx); }}
-                      className={`w-2 h-2 rounded-full cursor-pointer transition-all duration-300 ${idx === currentSlide ? 'bg-black w-4' : 'bg-black/30'}`}
+                      className={`w-1.5 h-1.5 rounded-full cursor-pointer transition-all duration-300 ${idx === currentSlide ? 'bg-black w-3.5' : 'bg-black/30'}`}
                     />
                   ))}
                 </div>
@@ -238,12 +238,12 @@ export default function ProjectsSection() {
             </div>
 
             {/* Right Column: Project Info */}
-            <div className="w-full md:w-2/5 p-6 md:p-8 flex flex-col justify-between overflow-y-auto max-h-[45vh] md:max-h-none h-auto md:h-auto">
+            <div className="w-full md:w-2/5 p-5 sm:p-6 md:p-8 flex flex-col justify-between overflow-y-auto h-auto grow">
               <div className="flex flex-col gap-4">
                 <span className="text-[10px] tracking-widest font-black text-[#888888] uppercase">
                   {selectedProject.category}
                 </span>
-                <h3 className="text-2xl font-black text-[#111111] leading-tight m-0 uppercase">
+                <h3 className="text-xl sm:text-2xl font-black text-[#111111] leading-tight m-0 uppercase">
                   {selectedProject.title}
                 </h3>
                 <p className="text-xs leading-[1.6] text-[#555555] m-0">
@@ -271,7 +271,7 @@ export default function ProjectsSection() {
                   href={selectedProject.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 flex items-center justify-center rounded-full py-3.5 px-6 bg-[#111111] hover:bg-black text-white font-extrabold text-xs tracking-wider transition-colors cursor-pointer decoration-none shadow-sm"
+                  className="mt-6 flex items-center justify-center rounded-full py-3 px-6 bg-[#111111] hover:bg-black text-white font-extrabold text-xs tracking-wider transition-colors cursor-pointer decoration-none shadow-sm w-full"
                 >
                   VISIT LIVE SITE ↗
                 </a>

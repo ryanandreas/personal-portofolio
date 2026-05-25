@@ -51,9 +51,9 @@ const educations = [
 
 export default function ExperienceSection() {
   return (
-    <div id="about" className="flex overflow-hidden w-full flex-col py-16 px-[108px] bg-white antialiased text-xs max-w-8xl mx-auto relative">
+    <div id="about" className="flex overflow-hidden w-full flex-col py-12 md:py-16 px-6 md:px-[108px] bg-white antialiased text-xs max-w-8xl mx-auto relative">
       {/* Header */}
-      <div className="w-full flex flex-col items-center mb-16 pt-6 relative">
+      <div className="w-full flex flex-col items-center mb-12 md:mb-16 pt-6 relative">
         <div 
           className="flex items-center justify-center mb-4 rounded-full shrink-0 w-8 h-8"
           style={{ 
@@ -65,7 +65,7 @@ export default function ExperienceSection() {
             <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" />
           </svg>
         </div>
-        <h2 className="text-[56px] leading-[1.1] mt-0 mb-4 uppercase tracking-[0.02em] text-center font-black text-black">
+        <h2 className="text-4xl sm:text-5xl md:text-[56px] leading-[1.1] mt-0 mb-4 uppercase tracking-[0.02em] text-center font-black text-black">
           RESUME
         </h2>
         <p className="text-sm leading-[1.6] max-w-[480px] text-center text-[#555555] m-0">
@@ -73,7 +73,7 @@ export default function ExperienceSection() {
         </p>
 
         {/* Decorative Grid Circles / Stripes on Right */}
-        <svg width="60" height="60" viewBox="0 0 60 60" className="absolute right-0 top-0">
+        <svg width="60" height="60" viewBox="0 0 60 60" className="absolute right-0 top-0 opacity-40 md:opacity-100">
           <clipPath id="circleClip"><circle cx="30" cy="30" r="30"/></clipPath>
           <g clipPath="url(#circleClip)" stroke="#111111" strokeWidth="3" strokeLinecap="round">
             <line x1="-10" y1="-10" x2="70" y2="70" />
@@ -88,13 +88,13 @@ export default function ExperienceSection() {
       </div>
 
       {/* Main Content: Two Columns */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 w-full relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 w-full relative z-10">
         
         {/* Education Column */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6 md:gap-8">
           <div className="flex items-center gap-3 pb-2 border-b-2 border-[#111111] w-fit">
             <GraduationCap className="w-6 h-6 text-black" strokeWidth={2.5} />
-            <h3 className="text-2xl font-black text-black uppercase tracking-tight m-0">
+            <h3 className="text-xl md:text-2xl font-black text-black uppercase tracking-tight m-0">
               Education
             </h3>
           </div>
@@ -109,7 +109,7 @@ export default function ExperienceSection() {
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-[#111111] transition-colors rounded-l-xl" />
 
                 <div className="flex flex-col gap-2 w-full">
-                  <div className="flex justify-between items-start gap-4">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
                     <h4 className="font-extrabold text-black text-lg m-0 leading-tight">
                       {edu.title}
                     </h4>
@@ -130,10 +130,10 @@ export default function ExperienceSection() {
         </div>
 
         {/* Experience Column */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6 md:gap-8">
           <div className="flex items-center gap-3 pb-2 border-b-2 border-[#111111] w-fit">
             <Briefcase className="w-6 h-6 text-black" strokeWidth={2.5} />
-            <h3 className="text-2xl font-black text-black uppercase tracking-tight m-0">
+            <h3 className="text-xl md:text-2xl font-black text-black uppercase tracking-tight m-0">
               Work Experience
             </h3>
           </div>
@@ -148,7 +148,7 @@ export default function ExperienceSection() {
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-[#111111] transition-colors rounded-l-xl" />
 
                 <div className="flex flex-col gap-2 w-full">
-                  <div className="flex justify-between items-start gap-4">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4">
                     <h4 className="font-extrabold text-black text-lg m-0 leading-tight">
                       {exp.title}
                     </h4>

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function FooterSection() {
   return (
-    <div id="contact" className="flex overflow-hidden w-full flex-col justify-center py-16 px-[108px] bg-white antialiased text-xs max-w-8xl mx-auto">
+    <div id="contact" className="flex overflow-hidden w-full flex-col justify-center py-12 md:py-16 px-6 md:px-[108px] bg-white antialiased text-xs max-w-8xl mx-auto">
       <div className="flex flex-col w-full gap-8">
         
         {/* Outline 'X' Icon */}
