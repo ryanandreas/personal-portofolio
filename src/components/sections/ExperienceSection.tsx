@@ -6,25 +6,25 @@ const experiences = [
     title: "Website/Mobile Apps Developer",
     company: "PT Lab Welcom Play",
     duration: "Mar 2025 - Present",
-    desc: "Designing, building, and maintaining responsive websites and mobile applications."
+    desc: "Designing, building, and maintaining responsive websites and mobile applications, mainly utilizing Next.js, Laravel, and occasionally WordPress."
   },
   {
     title: "Freelance Website/Mobile Apps Developer",
     company: "Aigorhythm Malaysia",
     duration: "Dec 2024 - Present",
-    desc: "Developing customized web and mobile solutions tailored to client specifications."
+    desc: "Developing customized web and mobile solutions tailored to client specifications, mainly utilizing Laravel for web and Flutter for mobile. Experienced in version control, code maintenance, and working with AWS cloud architecture."
   },
   {
     title: "University Intern",
     company: "PT Citra Powerindo Sakti",
     duration: "2023",
-    desc: "Assisted in engineering projects, programming tasks, and system analysis."
+    desc: ""
   },
   {
     title: "Vocational High School Intern",
     company: "PT Indonusa Telemedia (Wardiere Inc.)",
     duration: "2017",
-    desc: "Supported network maintenance, IT troubleshooting, and technical documentation."
+    desc: ""
   }
 ];
 
@@ -159,9 +159,11 @@ export default function ExperienceSection() {
                   <span className="font-bold text-[#555555] text-sm">
                     {exp.company}
                   </span>
-                  <p className="text-xs leading-[1.6] text-[#777777] m-0">
-                    {exp.desc}
-                  </p>
+                  {exp.desc && (
+                    <p className="text-xs leading-[1.6] text-[#777777] m-0">
+                      {exp.desc}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}

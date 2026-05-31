@@ -21,7 +21,7 @@ const projectsData: Project[] = [
     title: "Simple Badminton Academy Landing Page",
     category: "WEB DESIGN / LANDING PAGE",
     images: ["/sbaweb1.jpeg", "/sbaweb2.jpeg"],
-    description: "A modern, high-conversion landing page designed for a badminton academy. Built with optimized assets, clean layouts, and responsive elements to capture student registrations.",
+    description: "A modern, high-conversion landing page built to capture student registrations for a badminton academy.",
     longDescription: "A responsive landing page that profiles a badminton academy, highlighting its facilities, achievements, and coaching staff. The platform is equipped with an administrative dashboard panel, allowing easy content management to edit or delete site details in real time.",
     tech: ["NextJS", "Tailwind CSS", "Vercel", "NeonDB"],
     link: "https://simplebadmintonacademy.com",
@@ -32,9 +32,9 @@ const projectsData: Project[] = [
     title: "AC Tiam Web App",
     category: "WEB APP DEVELOPMENT",
     images: ["/tiamweb1.jpeg", "/tiamweb2.jpeg", "/tiamweb3.jpeg", "/tiamweb4.jpeg"],
-    description: "A comprehensive administrative web dashboard built to manage scheduling, operational logs, invoicing, and service tracking. Featuring secure user authentication and interactive data analytics.",
-    longDescription: "An enterprise-grade administration dashboard built for AC Tiam. It enables administrative staff to organize service tickets, dispatch technicians, generate invoices, track parts inventory, and monitor revenue with dynamic charts. The system includes strict role-based access control, secure API layers, and database optimization for rapid load times.",
-    tech: ["Next.js", "React", "TypeScript", "Laravel", "PostgreSQL", "NeonDB", "Tailwind CSS"],
+    description: "A comprehensive administrative dashboard built to manage scheduling, invoicing, and service tracking.",
+    longDescription: "An enterprise-grade administration dashboard built for AC Tiam. It enables administrative staff to organize service tickets, dispatch technicians, generate invoices integrated with the Midtrans payment gateway, track parts inventory, and monitor revenue with dynamic charts. The system includes strict role-based access control, secure API layers, and database optimization for rapid load times.",
+    tech: ["Next.js", "React", "NeonDB", "Tailwind CSS", "Midtrans"],
     link: "https://actiam.vercel.app/",
     linkLabel: "actiam.vercel.app"
   },
@@ -43,7 +43,7 @@ const projectsData: Project[] = [
     title: "AC Tiam Customer Mobile App",
     category: "MOBILE APP DEVELOPMENT",
     images: ["/tiammobileapp1.jpeg", "/tiammobileapp2.jpeg", "/tiammobileapp3.jpeg"],
-    description: "A sleek cross-platform customer mobile application enabling quick service bookings, real-time technician tracking, billing history access, and instant feedback.",
+    description: "A sleek customer mobile application enabling quick service bookings and real-time tracking.",
     longDescription: "A cross-platform mobile application developed using Flutter for the customer side. It enables users to seamlessly make bookings, view detailed order logs, and perform secure transactions integrated with the Midtrans payment gateway.",
     tech: ["Flutter", "Dart", "NeonDB", "Midtrans PG"]
   }
