@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 
 export default function HeroSection() {
@@ -61,6 +62,20 @@ export default function HeroSection() {
               Learn about my self what i do
             </div>
           </a>
+          <Link href="/portofolio" className="flex flex-col w-40 gap-2 shrink-0 cursor-pointer group decoration-none">
+            <div className="w-full h-px shrink-0 bg-[#111111]" />
+            <div className="flex justify-between items-center">
+              <div className="font-bold text-black text-base">
+                PDF Portfolio
+              </div>
+              <div className="text-black text-base group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                ↗
+              </div>
+            </div>
+            <div className="text-xs leading-[1.4] text-[#666666]">
+              View & download as a print-ready PDF document.
+            </div>
+          </Link>
           <a href="mailto:ryanguansin@gmail.com?subject=Let’s%20Work%20Together" className="flex flex-col w-40 gap-2 shrink-0 cursor-pointer group decoration-none">
             <div className="w-full h-px shrink-0 bg-[#111111]" />
             <div className="flex justify-between items-center">
@@ -114,6 +129,14 @@ export default function HeroSection() {
             <span>About Me</span>
             <span className="w-12 h-0.5 bg-[#111111] transition-transform duration-300 scale-x-0 group-hover:scale-x-100" />
           </a>
+          <Link 
+            href="/portofolio" 
+            onClick={() => setIsMenuOpen(false)}
+            className="group flex flex-col items-center gap-1 text-2xl font-black text-[#111111] uppercase tracking-wide decoration-none"
+          >
+            <span>PDF Portfolio</span>
+            <span className="w-12 h-0.5 bg-[#111111] transition-transform duration-300 scale-x-0 group-hover:scale-x-100" />
+          </Link>
           <a 
             href="mailto:ryanguansin@gmail.com?subject=Let’s%20Work%20Together" 
             onClick={() => setIsMenuOpen(false)}

@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-interface Project {
+export interface Project {
   id: number;
   title: string;
   category: string;
@@ -15,7 +16,7 @@ interface Project {
   linkLabel?: string;
 }
 
-const projectsData: Project[] = [
+export const projectsData: Project[] = [
   {
     id: 1,
     title: "Simple Badminton Academy Landing Page",
@@ -93,9 +94,15 @@ export default function ProjectsSection() {
         <h2 className="text-4xl sm:text-5xl md:text-[56px] leading-[1.1] mt-0 mb-4 uppercase tracking-[0.02em] text-center font-black text-black">
           MY PROJECTS
         </h2>
-        <p className="text-sm leading-[1.6] max-w-[480px] text-center text-[#555555] m-0">
+        <p className="text-sm leading-[1.6] max-w-[480px] text-center text-[#555555] m-0 mb-6">
           A showcase of recent client projects, combining modern technology with clean visual experiences.
         </p>
+        <Link 
+          href="/portofolio" 
+          className="inline-flex items-center gap-2 rounded-full py-2.5 px-6 bg-black hover:bg-neutral-800 text-white font-extrabold text-[10px] sm:text-xs tracking-wider transition-all duration-200 cursor-pointer shadow-sm uppercase shrink-0"
+        >
+          <span>Cetak / Simpan PDF 📄</span>
+        </Link>
 
         {/* Dot pattern */}
         <svg width="40" height="80" viewBox="0 0 40 80" fill="none" className="absolute left-4 md:left-[100px] top-0 opacity-20 md:opacity-40">
