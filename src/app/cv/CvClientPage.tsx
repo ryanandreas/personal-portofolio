@@ -3,11 +3,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Printer, Download, Mail, MapPin, Phone, Calendar, Sparkles, Globe } from 'lucide-react';
+import { ArrowLeft, Printer, Mail, MapPin, Phone, Calendar, Sparkles, Globe } from 'lucide-react';
 
 export default function CvClientPage() {
   const [siteUrl, setSiteUrl] = useState("ryanandreas.com");
-  const [isDownloading, setIsDownloading] = useState(false);
   const cvContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,35 +20,7 @@ export default function CvClientPage() {
     window.print();
   };
 
-  const handleDownload = async () => {
-    if (isDownloading) return;
-    setIsDownloading(true);
-    try {
-      const element = cvContainerRef.current;
-      if (!element) return;
 
-      const html2pdf = (await import('html2pdf.js/src/index.js')).default;
-      const opt = {
-        margin:       0,
-        filename:     'CV_Ryan_Andreas.pdf',
-        image:        { type: 'jpeg' as const, quality: 0.98 },
-        html2canvas:  { 
-          scale: 2.5, // High resolution for crisp text
-          useCORS: true, 
-          logging: false,
-          letterRendering: true
-        },
-        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const },
-        pagebreak:    { mode: ['css', 'legacy'] }
-      };
-
-      await html2pdf().set(opt).from(element).save();
-    } catch (error) {
-      console.error("Gagal mengunduh PDF CV:", error);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
 
   // QR code content pointing to portfolio url
   const qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ryanandreas-portofolio.vercel.app/";
@@ -84,16 +55,7 @@ export default function CvClientPage() {
           <span>Cetak</span>
         </button>
 
-        <div className="w-px h-5 bg-slate-200" />
-        
-        <button
-          onClick={handleDownload}
-          disabled={isDownloading}
-          className="flex items-center gap-2.5 text-xs font-black text-white bg-black hover:bg-slate-900 px-6 py-3 rounded-full transition-all duration-200 cursor-pointer shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <Download className="w-4 h-4" />
-          <span>{isDownloading ? "Memproses PDF..." : "Unduh PDF"}</span>
-        </button>
+
       </div>
 
       {/* MAIN CONTAINER */}
@@ -105,7 +67,7 @@ export default function CvClientPage() {
           <Sparkles className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
           <div className="text-xs text-slate-600 leading-[1.7]">
             <span className="font-black text-black block mb-1">💡 Halaman CV Interaktif:</span>
-            Halaman ini menampilkan CV Anda dalam format web modern. Anda dapat mengeklik tombol <strong>Unduh PDF</strong> untuk mendapatkan file PDF A4 resmi yang terisi penuh, atau klik <strong>Cetak</strong> untuk langsung mengirimkannya ke printer.
+            Halaman ini menampilkan CV Anda dalam format web modern. Anda dapat mengeklik tombol <strong>Cetak</strong> untuk mencetak langsung ke printer atau menyimpannya sebagai file PDF melalui dialog cetak browser.
           </div>
         </div>
 

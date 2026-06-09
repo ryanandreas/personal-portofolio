@@ -3,14 +3,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Printer, ExternalLink, Mail, MapPin, Sparkles, Filter, Code, CheckCircle, Globe, Download } from 'lucide-react';
+import { ArrowLeft, Printer, ExternalLink, Mail, MapPin, Sparkles, Filter, Code, CheckCircle, Globe } from 'lucide-react';
 import { projectsData } from '@/components/sections/ProjectsSection';
 
 export default function PortfolioClientPage() {
   const [siteUrl, setSiteUrl] = useState("ryanandreas.com");
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [isDownloading, setIsDownloading] = useState(false);
   const pdfContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,35 +40,7 @@ export default function PortfolioClientPage() {
     window.print();
   };
 
-  const handleDownload = async () => {
-    if (isDownloading) return;
-    setIsDownloading(true);
-    try {
-      const element = pdfContainerRef.current;
-      if (!element) return;
 
-      const html2pdf = (await import('html2pdf.js')).default;
-      const opt = {
-        margin:       0,
-        filename:     'Portofolio_Ryan_Andreas.pdf',
-        image:        { type: 'jpeg' as const, quality: 0.98 },
-        html2canvas:  { 
-          scale: 2, 
-          useCORS: true, 
-          logging: false,
-          letterRendering: true
-        },
-        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const },
-        pagebreak:    { mode: ['css', 'legacy'] }
-      };
-
-      await html2pdf().set(opt).from(element).save();
-    } catch (error) {
-      console.error("Gagal mengunduh PDF:", error);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white text-[#111111] antialiased flex flex-col relative overflow-hidden font-sans pb-16">
@@ -101,16 +72,7 @@ export default function PortfolioClientPage() {
           <span>Cetak</span>
         </button>
 
-        <div className="w-px h-5 bg-[#EBEBEB]" />
-        
-        <button
-          onClick={handleDownload}
-          disabled={isDownloading}
-          className="flex items-center gap-2.5 text-xs font-black text-white bg-[#111111] hover:bg-black px-6 py-3 rounded-full transition-all duration-200 cursor-pointer shadow-lg active:scale-95 flex-row disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <Download className="w-4 h-4" />
-          <span>{isDownloading ? "Memproses PDF..." : "Unduh PDF"}</span>
-        </button>
+
       </div>
 
       {/* MAIN CONTAINER */}
@@ -122,7 +84,7 @@ export default function PortfolioClientPage() {
           <Sparkles className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
           <div className="text-xs text-[#555555] leading-[1.7]">
             <span className="font-black text-black block mb-1">💡 Info Unduh Portofolio:</span>
-            Tombol <strong>Unduh PDF</strong> akan secara otomatis memproses dan mengunduh dokumen A4 portofolio Anda. Tombol <strong>Cetak</strong> dapat digunakan jika Anda ingin mencetak langsung menggunakan printer fisik.
+            Tombol <strong>Cetak</strong> dapat digunakan jika Anda ingin mencetak portofolio secara langsung atau menyimpannya sebagai PDF melalui menu cetak browser.
           </div>
         </div>
 
