@@ -46,7 +46,7 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                   transition={{ duration: 1, delay: 0.1, ease: "easeInOut" }}
                   className="text-base font-normal max-w-2xl text-muted-foreground"
                 >
-                  At shadcn space, we help small startups tackle the world's
+                  At shadcn space, we help small startups tackle the world&apos;s
                   biggest challenges with tailored solutions, guiding you from
                   strategy to success in a competitive market.
                 </motion.p>

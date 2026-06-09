@@ -15,6 +15,7 @@ export default function PortfolioClientPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSiteUrl(window.location.hostname);
     }
   }, []);
