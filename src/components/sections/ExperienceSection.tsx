@@ -3,49 +3,49 @@ import { Briefcase, GraduationCap } from 'lucide-react';
 
 const experiences = [
   {
-    title: "Website/Mobile Apps Developer",
-    company: "PT Lab Welcom Play",
-    duration: "Mar 2025 - Present",
-    desc: "Designing, building, and maintaining responsive websites and mobile applications, mainly utilizing Next.js, Laravel, and occasionally WordPress."
+    title: "Fullstack Developer",
+    company: "PT LAB WELCOM PLAY",
+    duration: "March 2025 – Present",
+    desc: "Experienced as a Backend and Frontend Developer for web applications using Next.js, Laravel, and Flutter. Experienced in database management using PostgreSQL and NeonDB, and integrating payment gateways like Midtrans."
   },
   {
-    title: "Freelance Website/Mobile Apps Developer",
-    company: "Aigorhythm Malaysia",
-    duration: "Dec 2024 - Present",
-    desc: "Developing customized web and mobile solutions tailored to client specifications, mainly utilizing Laravel for web and Flutter for mobile. Experienced in version control, code maintenance, and working with AWS cloud architecture."
+    title: "Freelance Front End Developer",
+    company: "Aigorhythm Sdn. Bhd.",
+    duration: "December 2024 – Present",
+    desc: "Gained experience in developing Laravel web apps, maintaining mobile apps (feature updates, version upgrades, bug fixes), and understanding AWS cloud infrastructure management to support system performance and stability."
   },
   {
     title: "University Intern",
     company: "PT Citra Powerindo Sakti",
     duration: "2023",
-    desc: ""
+    desc: "Experienced as an IT Support Specialist responsible for corporate office hardware maintenance (PCs, printers, LAN cabling, routers) and network troubleshooting."
   },
   {
     title: "Vocational High School Intern",
     company: "PT Indonusa Telemedia (Wardiere Inc.)",
     duration: "2017",
-    desc: ""
+    desc: "Experienced as an Uplink Assistant with competency in earth station infrastructure maintenance for cable television transmission systems."
   }
 ];
 
 const educations = [
   {
-    title: "Informatics Engineering",
+    title: "Bachelor of Informatics Engineering",
     institution: "Universitas Esa Unggul",
-    duration: "2018 - 2024",
-    desc: "Acquired deep knowledge of software engineering, web development, and algorithms."
+    duration: "2018 – 2024",
+    desc: "In-depth study of software engineering, web/mobile application development, database management, and computer algorithms."
   },
   {
-    title: "SMK Telkom Jakarta",
-    institution: "Computer & Network Engineering",
-    duration: "2014 - 2017",
-    desc: "Focused on networking, computer systems, and server management."
+    title: "Vocational High School - Access Network",
+    institution: "SMK Telkom Jakarta",
+    duration: "2014 – 2017",
+    desc: "Focused learning on network administration, telecommunication infrastructure, computer systems, and installation of access transmission devices."
   },
   {
     title: "Elementary & Junior High School",
     institution: "SD-SMP Seraphine Bakti Utama",
-    duration: "2005 - 2014",
-    desc: "Built a solid academic foundation and basic communication skills."
+    duration: "2005 – 2014",
+    desc: "Built foundational academic competencies, character building, and early communication skill development."
   }
 ];
 

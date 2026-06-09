@@ -101,7 +101,7 @@ export default function ProjectsSection() {
           href="/portofolio" 
           className="inline-flex items-center gap-2 rounded-full py-2.5 px-6 bg-black hover:bg-neutral-800 text-white font-extrabold text-[10px] sm:text-xs tracking-wider transition-all duration-200 cursor-pointer shadow-sm uppercase shrink-0"
         >
-          <span>Cetak / Simpan PDF 📄</span>
+          <span>Print / Save PDF 📄</span>
         </Link>
 
         {/* Dot pattern */}

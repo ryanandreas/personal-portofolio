@@ -207,7 +207,7 @@ export default function HeroSection() {
                 Let’s Talk
               </span>
             </a>
-            <div className="flex flex-col items-start cursor-pointer group">
+            <Link href="/cv" className="flex flex-col items-start cursor-pointer group decoration-none">
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-black text-sm sm:text-base">
                   Download Cv
@@ -217,7 +217,7 @@ export default function HeroSection() {
                 </span>
               </div>
               <div className="w-full h-px mt-1 shrink-0 bg-[#111111]" />
-            </div>
+            </Link>
           </div>
         </div>
 
