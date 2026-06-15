@@ -5,8 +5,149 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Printer, Mail, MapPin, Phone, Calendar, Sparkles, Globe } from 'lucide-react';
 
+interface CvData {
+  backBtn: string;
+  printBtn: string;
+  bannerTitle: string;
+  bannerDesc: string;
+  profileTitle: string;
+  profileDesc: string;
+  educationTitle: string;
+  experienceTitle: string;
+  contactTitle: string;
+  skillsTitle: string;
+  dob: string;
+  education: {
+    title: string;
+    institution: string;
+    period: string;
+  }[];
+  experience: {
+    role: string;
+    company: string;
+    period: string;
+    description: string;
+  }[];
+}
+
+const translations: Record<'id' | 'en', CvData> = {
+  id: {
+    backBtn: "Kembali",
+    printBtn: "Cetak",
+    bannerTitle: "💡 Halaman CV Interaktif:",
+    bannerDesc: "Halaman ini menampilkan CV Anda dalam format web modern. Anda dapat mengeklik tombol Cetak untuk mencetak langsung ke printer atau menyimpannya sebagai file PDF melalui dialog cetak browser.",
+    profileTitle: "Profile",
+    profileDesc: "Saya adalah seorang Web & Mobile Developer dengan latar belakang Teknik Informatika dan pengalaman dalam membangun serta memelihara aplikasi digital untuk kebutuhan bisnis dan organisasi. Berpengalaman dalam pengembangan sistem, integrasi layanan digital, serta pengelolaan infrastruktur aplikasi.",
+    educationTitle: "Education",
+    experienceTitle: "Work Experience",
+    contactTitle: "Contact",
+    skillsTitle: "Skills",
+    dob: "Jakarta, 25 Juli 1999",
+    education: [
+      {
+        title: "Sarjana Teknik Informatika",
+        institution: "Universitas Esa Unggul",
+        period: "2018 – 2024"
+      },
+      {
+        title: "SMK Jurusan Akses",
+        institution: "SMK Telkom Jakarta",
+        period: "2014 – 2017"
+      },
+      {
+        title: "Sekolah Dasar & Menengah Pertama",
+        institution: "SD-SMP Seraphine Bakti Utama",
+        period: "2005 – 2014"
+      }
+    ],
+    experience: [
+      {
+        role: "Fullstack Developer",
+        company: "PT LAB WELCOM PLAY",
+        period: "Maret 2025 – Present",
+        description: "Pengalaman sebagai Backend dan Frontend Developer aplikasi web menggunakan Next.js, Laravel, dan Flutter. Memiliki pengalaman dalam pengelolaan database menggunakan PostgreSQL dan NeonDB, serta integrasi payment gateway seperti Midtrans."
+      },
+      {
+        role: "Freelance Front End Developer",
+        company: "Aigorhythm Sdn. Bhd.",
+        period: "Desember 2024 – Present",
+        description: "Saya mendapat pengalaman dalam mengembangkan web app laravel, melakukan maintenance aplikasi mobile seperti pembaruan fitur, update versi, dan perbaikan bug, serta memahami pengelolaan infrastruktur berbasis cloud AWS untuk mendukung performa dan stabilitas sistem."
+      },
+      {
+        role: "University Intern",
+        company: "PT Citra Powerindo Sakti",
+        period: "2023",
+        description: "Berpengalaman sebagai IT Support yang bertanggung jawab atas pemeliharaan perangkat keras (hardware) kantor (PC, printer, kabel LAN, router) serta troubleshooting perangkat jaringan."
+      },
+      {
+        role: "Vocational High School Intern",
+        company: "PT Indonusa Telemedia (Wardiere Inc.)",
+        period: "2017",
+        description: "Berpengalaman sebagai Uplink Assistant dengan kompetensi dalam pemeliharaan infrastruktur stasiun bumi (earth station) pada sistem transmisi televisi kabel."
+      }
+    ]
+  },
+  en: {
+    backBtn: "Back",
+    printBtn: "Print",
+    bannerTitle: "💡 Interactive CV Page:",
+    bannerDesc: "This page displays your CV in a modern web format. You can click the Print button to print directly to a printer or save it as a PDF file through the browser print dialog.",
+    profileTitle: "Profile",
+    profileDesc: "I am a Web & Mobile Developer with an Informatics Engineering background and experience in building and maintaining digital applications for business and organizational needs. Experienced in system development, digital service integration, and application infrastructure management.",
+    educationTitle: "Education",
+    experienceTitle: "Work Experience",
+    contactTitle: "Contact",
+    skillsTitle: "Skills",
+    dob: "Jakarta, July 25, 1999",
+    education: [
+      {
+        title: "Bachelor of Informatics Engineering",
+        institution: "Esa Unggul University",
+        period: "2018 – 2024"
+      },
+      {
+        title: "Vocational High School in Access Network",
+        institution: "Telkom Vocational High School Jakarta",
+        period: "2014 – 2017"
+      },
+      {
+        title: "Elementary & Junior High School",
+        institution: "Seraphine Bakti Utama School",
+        period: "2005 – 2014"
+      }
+    ],
+    experience: [
+      {
+        role: "Fullstack Developer",
+        company: "PT LAB WELCOM PLAY",
+        period: "March 2025 – Present",
+        description: "Experienced as a Backend and Frontend Developer for web applications using Next.js, Laravel, and Flutter. Proficient in database management using PostgreSQL and NeonDB, as well as integrating payment gateways like Midtrans."
+      },
+      {
+        role: "Freelance Front End Developer",
+        company: "Aigorhythm Sdn. Bhd.",
+        period: "December 2024 – Present",
+        description: "Gained experience in developing Laravel web applications, maintaining mobile applications including feature updates, version upgrades, and bug fixes, and understanding AWS cloud-based infrastructure management to support system performance and stability."
+      },
+      {
+        role: "University Intern",
+        company: "PT Citra Powerindo Sakti",
+        period: "2023",
+        description: "Served as an IT Support intern responsible for office hardware maintenance (PCs, printers, LAN cables, routers) and network troubleshooting."
+      },
+      {
+        role: "Vocational High School Intern",
+        company: "PT Indonusa Telemedia (Wardiere Inc.)",
+        period: "2017",
+        description: "Worked as an Uplink Assistant intern with competence in earth station infrastructure maintenance for cable television transmission systems."
+      }
+    ]
+  }
+};
+
 export default function CvClientPage() {
   const [siteUrl, setSiteUrl] = useState("ryanandreas.com");
+  const [lang, setLang] = useState<'id' | 'en'>('id');
   const cvContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,14 +157,20 @@ export default function CvClientPage() {
     }
   }, []);
 
+  useEffect(() => {
+    document.title = lang === 'id' 
+      ? "Curriculum Vitae - Ryan Andreas" 
+      : "Resume - Ryan Andreas";
+  }, [lang]);
+
   const handlePrint = () => {
     window.print();
   };
 
-
-
   // QR code content pointing to portfolio url
   const qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://ryanandreas-portofolio.vercel.app/";
+
+  const currentData = translations[lang];
 
   return (
     <div className="min-h-screen bg-slate-50 text-[#111111] antialiased flex flex-col relative overflow-hidden font-sans pb-16">
@@ -42,9 +189,29 @@ export default function CvClientPage() {
           className="flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-black transition-colors cursor-pointer group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          <span>Kembali</span>
+          <span>{currentData.backBtn}</span>
         </Link>
         
+        <div className="w-px h-5 bg-slate-200" />
+
+        {/* Language Selection Toggle */}
+        <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-full border border-slate-200/50">
+          <button
+            onClick={() => setLang('id')}
+            className={`px-3 py-1 rounded-full text-[10px] uppercase font-black tracking-wider transition-all duration-200 ${lang === 'id' ? 'bg-black text-white shadow-sm' : 'text-slate-500 hover:text-black'}`}
+            title="Bahasa Indonesia"
+          >
+            ID
+          </button>
+          <button
+            onClick={() => setLang('en')}
+            className={`px-3 py-1 rounded-full text-[10px] uppercase font-black tracking-wider transition-all duration-200 ${lang === 'en' ? 'bg-black text-white shadow-sm' : 'text-slate-500 hover:text-black'}`}
+            title="English"
+          >
+            EN
+          </button>
+        </div>
+
         <div className="w-px h-5 bg-slate-200" />
 
         <button
@@ -52,10 +219,8 @@ export default function CvClientPage() {
           className="flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-black transition-colors cursor-pointer"
         >
           <Printer className="w-4 h-4" />
-          <span>Cetak</span>
+          <span>{currentData.printBtn}</span>
         </button>
-
-
       </div>
 
       {/* MAIN CONTAINER */}
@@ -66,8 +231,8 @@ export default function CvClientPage() {
           <div className="absolute top-0 left-0 w-1.5 h-full bg-black" />
           <Sparkles className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
           <div className="text-xs text-slate-600 leading-[1.7]">
-            <span className="font-black text-black block mb-1">💡 Halaman CV Interaktif:</span>
-            Halaman ini menampilkan CV Anda dalam format web modern. Anda dapat mengeklik tombol <strong>Cetak</strong> untuk mencetak langsung ke printer atau menyimpannya sebagai file PDF melalui dialog cetak browser.
+            <span className="font-black text-black block mb-1">{currentData.bannerTitle}</span>
+            {currentData.bannerDesc}
           </div>
         </div>
 
@@ -95,7 +260,7 @@ export default function CvClientPage() {
               {/* Contact Section */}
               <div className="mb-6">
                 <h3 className="text-[15px] font-black text-black uppercase tracking-wider border-b-2 border-black/80 pb-1 mb-3">
-                  Contact
+                  {currentData.contactTitle}
                 </h3>
                 <ul className="space-y-3 text-[13px] text-slate-700 leading-normal">
                   <li className="flex items-start gap-2.5">
@@ -118,7 +283,7 @@ export default function CvClientPage() {
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Calendar className="w-4 h-4 text-black shrink-0" />
-                    <span>Jakarta, 25 Juli 1999</span>
+                    <span>{currentData.dob}</span>
                   </li>
                 </ul>
               </div>
@@ -126,7 +291,7 @@ export default function CvClientPage() {
               {/* Skills Section */}
               <div>
                 <h3 className="text-[15px] font-black text-black uppercase tracking-wider border-b-2 border-black/80 pb-1 mb-3">
-                  Skills
+                  {currentData.skillsTitle}
                 </h3>
                 <ul className="space-y-2.5 text-[13px] text-slate-700 leading-normal">
                   <li className="flex items-start gap-1.5">
@@ -212,148 +377,63 @@ export default function CvClientPage() {
               {/* Profile */}
               <div className="mb-6">
                 <h3 className="text-[13px] font-black text-black uppercase tracking-widest border-b border-slate-200 pb-1 mb-2.5">
-                  Profile
+                  {currentData.profileTitle}
                 </h3>
                 <p className="text-[13px] leading-relaxed text-slate-700 m-0">
-                  Saya adalah seorang Web & Mobile Developer dengan latar belakang Teknik Informatika dan pengalaman dalam membangun serta memelihara aplikasi digital untuk kebutuhan bisnis dan organisasi. Berpengalaman dalam pengembangan sistem, integrasi layanan digital, serta pengelolaan infrastruktur aplikasi.
+                  {currentData.profileDesc}
                 </p>
               </div>
 
               {/* Education */}
               <div className="mb-6">
                 <h3 className="text-[13px] font-black text-black uppercase tracking-widest border-b border-slate-200 pb-1 mb-2.5">
-                  Education
+                  {currentData.educationTitle}
                 </h3>
                 <div className="space-y-3.5">
-                  <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                        Sarjana Teknik Informatika
-                      </h4>
-                      <span className="text-xs text-slate-500 italic block mt-0.5">
-                        Universitas Esa Unggul
+                  {currentData.education.map((edu, idx) => (
+                    <div key={idx} className="flex justify-between items-start gap-4">
+                      <div>
+                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
+                          {edu.title}
+                        </h4>
+                        <span className="text-xs text-slate-500 italic block mt-0.5">
+                          {edu.institution}
+                        </span>
+                      </div>
+                      <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                        {edu.period}
                       </span>
                     </div>
-                    <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                      2018 – 2024
-                    </span>
-                  </div>
-
-                  <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                        SMK Jurusan Akses
-                      </h4>
-                      <span className="text-xs text-slate-500 italic block mt-0.5">
-                        SMK Telkom Jakarta
-                      </span>
-                    </div>
-                    <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                      2014 – 2017
-                    </span>
-                  </div>
-
-                  <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                        Sekolah Dasar & Menengah Pertama
-                      </h4>
-                      <span className="text-xs text-slate-500 italic block mt-0.5">
-                        SD-SMP Seraphine Bakti Utama
-                      </span>
-                    </div>
-                    <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                      2005 – 2014
-                    </span>
-                  </div>
+                  ))}
                 </div>
               </div>
 
               {/* Work Experience */}
               <div>
                 <h3 className="text-[13px] font-black text-black uppercase tracking-widest border-b border-slate-200 pb-1 mb-2.5">
-                  Work Experience
+                  {currentData.experienceTitle}
                 </h3>
                 <div className="space-y-4">
-                  {/* Job 1 */}
-                  <div>
-                    <div className="flex justify-between items-start gap-4 mb-1.5">
-                      <div>
-                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                          Fullstack Developer
-                        </h4>
-                        <span className="text-xs text-slate-500 italic block mt-0.5">
-                          PT LAB WELCOM PLAY
+                  {currentData.experience.map((exp, idx) => (
+                    <div key={idx}>
+                      <div className="flex justify-between items-start gap-4 mb-1.5">
+                        <div>
+                          <h4 className="text-[13px] font-black text-black m-0 uppercase">
+                            {exp.role}
+                          </h4>
+                          <span className="text-xs text-slate-500 italic block mt-0.5">
+                            {exp.company}
+                          </span>
+                        </div>
+                        <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                          {exp.period}
                         </span>
                       </div>
-                      <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                        Maret 2025 – Present
-                      </span>
+                      <p className="text-[13px] leading-relaxed text-slate-700 m-0">
+                        {exp.description}
+                      </p>
                     </div>
-                    <p className="text-[13px] leading-relaxed text-slate-700 m-0">
-                      Pengalaman sebagai Backend dan Frontend Developer aplikasi web menggunakan Next.js, Laravel, dan Flutter. Memiliki pengalaman dalam pengelolaan database menggunakan PostgreSQL dan NeonDB, serta integrasi payment gateway seperti Midtrans.
-                    </p>
-                  </div>
-
-                  {/* Job 2 */}
-                  <div>
-                    <div className="flex justify-between items-start gap-4 mb-1.5">
-                      <div>
-                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                          Freelance Front End Developer
-                        </h4>
-                        <span className="text-xs text-slate-500 italic block mt-0.5">
-                          Aigorhythm Sdn. Bhd.
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                        Desember 2024 – Present
-                      </span>
-                    </div>
-                    <p className="text-[13px] leading-relaxed text-slate-700 m-0">
-                      Saya mendapat pengalaman dalam mengembangkan web app laravel, melakukan maintenance aplikasi mobile seperti pembaruan fitur, update versi, dan perbaikan bug, serta memahami pengelolaan infrastruktur berbasis cloud AWS untuk mendukung performa dan stabilitas sistem.
-                    </p>
-                  </div>
-
-                  {/* Job 3 */}
-                  <div>
-                    <div className="flex justify-between items-start gap-4 mb-1.5">
-                      <div>
-                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                          University Intern
-                        </h4>
-                        <span className="text-xs text-slate-500 italic block mt-0.5">
-                          PT Citra Powerindo Sakti
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                        2023
-                      </span>
-                    </div>
-                    <p className="text-[13px] leading-relaxed text-slate-700 m-0">
-                      Berpengalaman sebagai IT Support yang bertanggung jawab atas pemeliharaan perangkat keras (hardware) kantor (PC, printer, kabel LAN, router) serta troubleshooting perangkat jaringan.
-                    </p>
-                  </div>
-
-                  {/* Job 4 */}
-                  <div>
-                    <div className="flex justify-between items-start gap-4 mb-1.5">
-                      <div>
-                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                          Vocational High School Intern
-                        </h4>
-                        <span className="text-xs text-slate-500 italic block mt-0.5">
-                          PT Indonusa Telemedia (Wardiere Inc.)
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-[11px] font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                        2017
-                      </span>
-                    </div>
-                    <p className="text-[13px] leading-relaxed text-slate-700 m-0">
-                      Berpengalaman sebagai Uplink Assistant dengan kompetensi dalam pemeliharaan infrastruktur stasiun bumi (earth station) pada sistem transmisi televisi kabel.
-                    </p>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -392,7 +472,7 @@ export default function CvClientPage() {
                 {/* Contact Section */}
                 <div className="mb-[6mm]">
                   <h3 className="text-[15px] font-black text-black uppercase tracking-wider border-b-2 border-black pb-[0.8mm] mb-[3mm]">
-                    Contact
+                    {currentData.contactTitle}
                   </h3>
                   <div className="space-y-[3mm] text-[13px] text-[#374151] leading-normal">
                     <div className="flex items-start gap-[1.5mm]">
@@ -415,7 +495,7 @@ export default function CvClientPage() {
                     </div>
                     <div className="flex items-center gap-[1.5mm]">
                       <Calendar className="w-[3.2mm] h-[3.2mm] text-black shrink-0" />
-                      <span>Jakarta, 25 Juli 1999</span>
+                      <span>{currentData.dob}</span>
                     </div>
                   </div>
                 </div>
@@ -423,7 +503,7 @@ export default function CvClientPage() {
                 {/* Skills Section */}
                 <div>
                   <h3 className="text-[15px] font-black text-black uppercase tracking-wider border-b-2 border-black pb-[0.8mm] mb-[3mm]">
-                    Skills
+                    {currentData.skillsTitle}
                   </h3>
                   <ul className="space-y-[2.2mm] text-[13px] text-[#374151] leading-normal pl-[0.5mm]">
                     <li className="flex items-start gap-[1mm]">
@@ -509,148 +589,63 @@ export default function CvClientPage() {
                 {/* Profile */}
                 <div className="mb-[5mm]">
                   <h3 className="text-[13px] font-black text-black uppercase tracking-widest border-b border-[#E5E7EB] pb-[0.8mm] mb-[2mm]">
-                    Profile
+                    {currentData.profileTitle}
                   </h3>
                   <p className="text-[13px] leading-[1.5] text-[#374151] m-0">
-                    Saya adalah seorang Web & Mobile Developer dengan latar belakang Teknik Informatika dan pengalaman dalam membangun serta memelihara aplikasi digital untuk kebutuhan bisnis dan organisasi. Berpengalaman dalam pengembangan sistem, integrasi layanan digital, serta pengelolaan infrastruktur aplikasi.
+                    {currentData.profileDesc}
                   </p>
                 </div>
 
                 {/* Education */}
                 <div className="mb-[5mm]">
                   <h3 className="text-[13px] font-black text-black uppercase tracking-widest border-b border-[#E5E7EB] pb-[0.8mm] mb-[2mm]">
-                    Education
+                    {currentData.educationTitle}
                   </h3>
                   <div className="space-y-[3.5mm]">
-                    <div className="flex justify-between items-start gap-[3mm]">
-                      <div>
-                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                          Sarjana Teknik Informatika
-                        </h4>
-                        <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
-                          Universitas Esa Unggul
+                    {currentData.education.map((edu, idx) => (
+                      <div key={idx} className="flex justify-between items-start gap-[3mm]">
+                        <div>
+                          <h4 className="text-[13px] font-black text-black m-0 uppercase">
+                            {edu.title}
+                          </h4>
+                          <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
+                            {edu.institution}
+                          </span>
+                        </div>
+                        <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
+                          {edu.period}
                         </span>
                       </div>
-                      <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
-                        2018 – 2024
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-start gap-[3mm]">
-                      <div>
-                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                          SMK Jurusan Akses
-                        </h4>
-                        <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
-                          SMK Telkom Jakarta
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
-                        2014 – 2017
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-start gap-[3mm]">
-                      <div>
-                        <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                          Sekolah Dasar & Menengah Pertama
-                        </h4>
-                        <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
-                          SD-SMP Seraphine Bakti Utama
-                        </span>
-                      </div>
-                      <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
-                        2005 – 2014
-                      </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
 
                 {/* Work Experience */}
                 <div>
                   <h3 className="text-[13px] font-black text-black uppercase tracking-widest border-b border-[#E5E7EB] pb-[0.8mm] mb-[2mm]">
-                    Work Experience
+                    {currentData.experienceTitle}
                   </h3>
                   <div className="space-y-[4.5mm]">
-                    {/* Job 1 */}
-                    <div>
-                      <div className="flex justify-between items-start gap-[3mm] mb-[0.8mm]">
-                        <div>
-                          <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                            Fullstack Developer
-                          </h4>
-                          <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
-                            PT LAB WELCOM PLAY
+                    {currentData.experience.map((exp, idx) => (
+                      <div key={idx}>
+                        <div className="flex justify-between items-start gap-[3mm] mb-[0.8mm]">
+                          <div>
+                            <h4 className="text-[13px] font-black text-black m-0 uppercase">
+                              {exp.role}
+                            </h4>
+                            <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
+                              {exp.company}
+                            </span>
+                          </div>
+                          <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
+                            {exp.period}
                           </span>
                         </div>
-                        <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
-                          Maret 2025 – Present
-                        </span>
+                        <p className="text-[13px] leading-[1.45] text-[#374151] m-0">
+                          {exp.description}
+                        </p>
                       </div>
-                      <p className="text-[13px] leading-[1.45] text-[#374151] m-0">
-                        Pengalaman sebagai Backend dan Frontend Developer aplikasi web menggunakan Next.js, Laravel, dan Flutter. Memiliki pengalaman dalam pengelolaan database menggunakan PostgreSQL dan NeonDB, serta integrasi payment gateway seperti Midtrans.
-                      </p>
-                    </div>
-
-                    {/* Job 2 */}
-                    <div>
-                      <div className="flex justify-between items-start gap-[3mm] mb-[0.8mm]">
-                        <div>
-                          <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                            Freelance Front End Developer
-                          </h4>
-                          <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
-                            Aigorhythm Sdn. Bhd.
-                          </span>
-                        </div>
-                        <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
-                          Desember 2024 – Present
-                        </span>
-                      </div>
-                      <p className="text-[13px] leading-[1.45] text-[#374151] m-0">
-                        Saya mendapat pengalaman dalam mengembangkan web app laravel, melakukan maintenance aplikasi mobile seperti pembaruan fitur, update versi, dan perbaikan bug, serta memahami pengelolaan infrastruktur berbasis cloud AWS untuk mendukung performa dan stabilitas sistem.
-                      </p>
-                    </div>
-
-                    {/* Job 3 */}
-                    <div>
-                      <div className="flex justify-between items-start gap-[3mm] mb-[0.8mm]">
-                        <div>
-                          <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                            University Intern
-                          </h4>
-                          <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
-                            PT Citra Powerindo Sakti
-                          </span>
-                        </div>
-                        <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
-                          2023
-                        </span>
-                      </div>
-                      <p className="text-[13px] leading-[1.45] text-[#374151] m-0">
-                        Berpengalaman sebagai IT Support yang bertanggung jawab atas pemeliharaan perangkat keras (hardware) kantor (PC, printer, kabel LAN, router) serta troubleshooting perangkat jaringan.
-                      </p>
-                    </div>
-
-                    {/* Job 4 */}
-                    <div>
-                      <div className="flex justify-between items-start gap-[3mm] mb-[0.8mm]">
-                        <div>
-                          <h4 className="text-[13px] font-black text-black m-0 uppercase">
-                            Vocational High School Intern
-                          </h4>
-                          <span className="text-xs text-[#6B7280] italic block mt-[0.3mm]">
-                            PT Indonusa Telemedia (Wardiere Inc.)
-                          </span>
-                        </div>
-                        <span className="shrink-0 text-[11px] font-bold text-[#4B5563] bg-[#F3F4F6] px-[2mm] py-[0.3mm] rounded border border-[#E5E7EB]">
-                          2017
-                        </span>
-                      </div>
-                      <p className="text-[13px] leading-[1.45] text-[#374151] m-0">
-                        Berpengalaman sebagai Uplink Assistant dengan kompetensi dalam pemeliharaan infrastruktur stasiun bumi (earth station) pada sistem transmisi televisi kabel.
-                      </p>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
